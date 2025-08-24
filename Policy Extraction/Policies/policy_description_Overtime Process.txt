@@ -1,0 +1,35 @@
+•Weekday hours > 10 productive hours are counted for OT•Weekend / Holiday hours•Overtime hours are to be approved by the manager on ERMS timesheet•Additional time worked on non-billable hours are eligible for Comp-off•Any time off during the month will be adjusted from approved OT hours•Employees who are negative on time off, these hours will be applied to comp off else reimbursed with payroll.On-Call support guidelines
+ 
+
+Log
+     OT hours in ERMS for actual time spent on the call/activity
+
+
+
+For
+      instance: 
+
+
+
+
+
+Resource
+       X is On-call support for 12 hours on weekend, he worked on a NOC call/planned
+       activity for 4 hours, log 4 hours ONLY in ERMS
+Resource
+       X is On-call support for 12 hours in weekday, he received a NOC call/planned
+       activity after his shift/work time and worked for 3 hours, he
+       will log 11 hours in ERMS for that day
+Resource
+       X is On-call support for 12 hours in weekday, he received a NOC call/planned
+       activity within his shift/work time and worked for 3 hours and
+       completed within his 8 hour work time, he will log his regular 8 hours
+       in ERMS.
+
+
+
+
+Applicable
+     for any planned/un planned activities
+Addition
+     to existing Organization OT guidelines 
