@@ -142,8 +142,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -152,7 +156,7 @@
               "RelativeDocumentMoniker": "UnanetApiSample\\Controllers\\TimesheetsController.cs",
               "ToolTip": "D:\\Hackathon\\UnanetApiSample\\UnanetApiSample\\Controllers\\TimesheetsController.cs",
               "RelativeToolTip": "UnanetApiSample\\Controllers\\TimesheetsController.cs",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAuwI8AAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAIEAAAAAAAAAAAA+wI8AAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-17T02:35:05.854Z",
               "EditorCaption": ""
@@ -167,8 +171,7 @@
               "RelativeToolTip": "UnanetApiSample\\Controllers\\ProjectsController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-17T02:33:38.39Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-17T02:33:38.39Z"
             },
             {
               "$type": "Document",
@@ -180,8 +183,7 @@
               "RelativeToolTip": "UnanetApiSample\\Controllers\\ExpensesController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-17T02:32:59.955Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-17T02:32:59.955Z"
             },
             {
               "$type": "Document",
@@ -193,8 +195,7 @@
               "RelativeToolTip": "UnanetApiSample\\Controllers\\ContractsController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAOQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-17T02:32:14.573Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-17T02:32:14.573Z"
             },
             {
               "$type": "Document",
@@ -543,10 +544,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-16T18:54:34.486Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }

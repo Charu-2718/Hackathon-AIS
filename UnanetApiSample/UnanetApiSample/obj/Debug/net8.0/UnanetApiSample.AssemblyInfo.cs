@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UnanetApiSample")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+925abc96f8be2d7a94e2273a7fa1013da78d6bb6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+abb93d694a079bc5bf9df3a67687b64130210835")]
 [assembly: System.Reflection.AssemblyProductAttribute("UnanetApiSample")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UnanetApiSample")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
