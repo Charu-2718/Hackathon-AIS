@@ -1,0 +1,6 @@
+@UnanetApiSample_HostAddress = http://localhost:5062
+
+GET {{UnanetApiSample_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
