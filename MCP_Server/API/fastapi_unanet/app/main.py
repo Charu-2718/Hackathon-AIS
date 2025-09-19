@@ -1,0 +1,13 @@
+from fastapi import FastAPI
+
+from app.controllers import contracts, expenses, people, projects, timesheets
+
+app = FastAPI()
+
+# Include routers
+app.include_router(contracts.router)
+app.include_router(expenses.router)
+app.include_router(projects.router)
+app.include_router(timesheets.router)
+app.include_router(people.router) 
+# url/docs
