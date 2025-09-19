@@ -44,6 +44,6 @@ def classify_content(message):
 
 
 
-print(classify_content("List expense types."))
+# print(classify_content("List expense types."))
 
 # Run python -m MCP_Server.Tools.classify_context from root folder Hackathon-AIS
