@@ -11,3 +11,7 @@ app.include_router(projects.router)
 app.include_router(timesheets.router)
 app.include_router(people.router) 
 # url/docs
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("app.main:app", port = 5000, reload = True)
