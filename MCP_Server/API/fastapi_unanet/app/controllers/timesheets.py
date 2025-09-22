@@ -99,3 +99,23 @@ def get_task_locations(id: int, taskId: int):
 @router.get("/{id}/validate")
 def validate_timesheet(id: int):
     return {"valid": True}
+
+
+# /rest/time
+# /rest/time/{id}
+# /rest/time/{id}/adjustments
+# /rest/time/{id}/attachment/{attachmentId}
+# /rest/time/{id}/attachments
+# /rest/time/{id}/audit
+# /rest/time/{id}/auto-fill
+# /rest/time/{id}/auto-fill/deleted
+# /rest/time/{id}/history
+# /rest/time/{id}/items/audit
+# /rest/time/{id}/offline
+# /rest/time/{id}/project-types
+# /rest/time/{id}/projects
+# /rest/time/{id}/projects/{projectId}/labor-categories
+# /rest/time/{id}/projects/{projectId}/locations
+# /rest/time/{id}/tasks/{taskId}/labor-categories
+# /rest/time/{id}/tasks/{taskId}/locations
+# /rest/time/{id}/validate

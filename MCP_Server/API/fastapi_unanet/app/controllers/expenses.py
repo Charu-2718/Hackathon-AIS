@@ -91,3 +91,18 @@ def get_vat_location(id: int):
     if not location:
         raise HTTPException(status_code=404, detail="VAT location not found")
     return location
+
+# /rest/expenses/{id}
+# /rest/expenses/{id}/attachments
+# /rest/expenses/{id}/attachments/{attachment_id}
+# /rest/expenses/{id}/details/{detail_id}
+# /rest/expenses/{id}/expense-types
+# /rest/expenses/{id}/history
+# /rest/expenses/{id}/meal-caps
+# /rest/expenses/{id}/payment-methods
+# /rest/expenses/{id}/project-types
+# /rest/expenses/{id}/projects
+#  /rest/expenses/{id}/validate
+# /rest/expenses/projects
+# /rest/expenses/vat-locations
+# /rest/expenses/vat-locations/{id}
