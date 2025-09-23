@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+from app.models.ProjectsModels import ProjectFee,ProjectFunding,ProjectHistory,ProjectLocation,ProjectMilestone,ProjectNote,ProjectOrganization,ProjectPeriod,ProjectRate,ProjectResource,ProjectRevenue,ProjectTask,ProjectTeam,ProjectTypeAssignment
 from app.models.attachment import Attachment
 from app.models.billing_analyst import BillingAnalyst
 from app.models.contract import Contract
@@ -166,6 +167,81 @@ ProjectAccounts = [
 ProjectAlerts = [
     ProjectAlert(Id=1, ProjectId=1, Message="Alert 1"),
     ProjectAlert(Id=2, ProjectId=2, Message="Alert 2"),
+]
+
+# -----------------
+# Projects - Additional Data
+# -----------------
+ProjectFees = [
+    ProjectFee(Id=1, ProjectId=1, Description="Fee A1", Amount=5000.0),
+    ProjectFee(Id=2, ProjectId=2, Description="Fee B1", Amount=3000.0),
+]
+
+ProjectFundings = [
+    ProjectFunding(Id=1, ProjectId=1, Source="Funding Source A", Amount=10000.0),
+    ProjectFunding(Id=2, ProjectId=2, Source="Funding Source B", Amount=15000.0),
+]
+
+ProjectHistories = [
+    ProjectHistory(Id=1, ProjectId=1, ChangeDescription="Created project", ChangedBy="Admin"),
+    ProjectHistory(Id=2, ProjectId=1, ChangeDescription="Updated budget", ChangedBy="Manager A"),
+]
+
+ProjectLocations = [
+    ProjectLocation(Id=1, ProjectId=1, Address="123 Main St", City="Mumbai", Country="India"),
+    ProjectLocation(Id=2, ProjectId=2, Address="456 Park Ave", City="New York", Country="USA"),
+]
+
+ProjectMilestones = [
+    ProjectMilestone(Id=1, ProjectId=1, Name="Milestone 1", DueDate=str(date.today() + timedelta(days=30))),
+    ProjectMilestone(Id=2, ProjectId=2, Name="Milestone 2", DueDate=str(date.today() + timedelta(days=45))),
+]
+
+ProjectNotes = [
+    ProjectNote(Id=1, ProjectId=1, Content="Note A1", Author="Admin"),
+    ProjectNote(Id=2, ProjectId=2, Content="Note B1", Author="Manager B"),
+]
+
+ProjectOrganizations = [
+    ProjectOrganization(Id=1, ProjectId=1, OrgName="Org A", Role="Client"),
+    ProjectOrganization(Id=2, ProjectId=2, OrgName="Org B", Role="Partner"),
+]
+
+ProjectPeriods = [
+    ProjectPeriod(Id=1, ProjectId=1, StartDate=str(date.today()), EndDate=str(date.today() + timedelta(days=90))),
+    ProjectPeriod(Id=2, ProjectId=2, StartDate=str(date.today()), EndDate=str(date.today() + timedelta(days=120))),
+]
+
+ProjectTypes = [
+    ProjectTypeAssignment(Id=1, ProjectId=1, TypeName="Internal"),
+    ProjectTypeAssignment(Id=2, ProjectId=2, TypeName="Client"),
+]
+
+ProjectRates = [
+    ProjectRate(Id=1, ProjectId=1, RateType="Standard", Value=100.0),
+    ProjectRate(Id=2, ProjectId=2, RateType="Premium", Value=150.0),
+]
+
+ProjectResources = [
+    ProjectResource(Id=1, ProjectId=1, ResourceName="Alice Smith", Role="Developer"),
+    ProjectResource(Id=2, ProjectId=2, ResourceName="Bob Johnson", Role="Tester"),
+]
+
+ProjectRevenues = [
+    ProjectRevenue(Id=1, ProjectId=1, Amount=20000.0, Period="Q1 2025"),
+    ProjectRevenue(Id=2, ProjectId=2, Amount=30000.0, Period="Q1 2025"),
+]
+
+ProjectTasks = [
+    ProjectTask(Id=1, ProjectId=1, TaskName="Design", Status="Completed"),
+    ProjectTask(Id=2, ProjectId=1, TaskName="Development", Status="In Progress"),
+    ProjectTask(Id=3, ProjectId=2, TaskName="Testing", Status="Pending"),
+]
+
+ProjectTeams = [
+    ProjectTeam(Id=1, ProjectId=1, MemberName="Alice Smith", Role="Lead"),
+    ProjectTeam(Id=2, ProjectId=1, MemberName="Bob Johnson", Role="Member"),
+    ProjectTeam(Id=3, ProjectId=2, MemberName="Charlie Brown", Role="Lead"),
 ]
 
 # -----------------

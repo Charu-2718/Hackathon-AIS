@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 from typing import List
 from app.data import dummy_data as dd
 
+
 router = APIRouter(prefix="/rest/projects", tags=["Projects"])
 
 # GET /rest/projects/{id}
@@ -161,3 +162,73 @@ def get_expense_types(id: int):
 @router.get("/{id}/expense-types/{expense_type_id}")
 def get_expense_type(id: int, expense_type_id: int):
     return next((e for e in dd.ExpenseTypes if e.Id == expense_type_id), None)
+
+# Fees
+@router.get("/{id}/fees")
+def get_project_fees(id: int):
+    return [f for f in dd.ProjectFees if f.ProjectId == id]
+
+# Fundings
+@router.get("/{id}/fundings")
+def get_project_fundings(id: int):
+    return [f for f in dd.ProjectFundings if f.ProjectId == id]
+
+# History
+@router.get("/{id}/history")
+def get_project_history(id: int):
+    return [h for h in dd.ProjectHistories if h.ProjectId == id]
+
+# Locations
+@router.get("/{id}/locations")
+def get_project_locations(id: int):
+    return [l for l in dd.ProjectLocations if l.ProjectId == id]
+
+# Milestones
+@router.get("/{id}/milestones")
+def get_project_milestones(id: int):
+    return [m for m in dd.ProjectMilestones if m.ProjectId == id]
+
+# Notes
+@router.get("/{id}/notes")
+def get_project_notes(id: int):
+    return [n for n in dd.ProjectNotes if n.ProjectId == id]
+
+# Organizations
+@router.get("/{id}/organizations")
+def get_project_organizations(id: int):
+    return [o for o in dd.ProjectOrganizations if o.ProjectId == id]
+
+# Periods
+@router.get("/{id}/periods")
+def get_project_periods(id: int):
+    return [p for p in dd.ProjectPeriods if p.ProjectId == id]
+
+# Project Types
+@router.get("/{id}/project-types")
+def get_project_types(id: int):
+    return [t for t in dd.ProjectTypes if t.ProjectId == id]
+
+# Rates
+@router.get("/{id}/rates")
+def get_project_rates(id: int):
+    return [r for r in dd.ProjectRates if r.ProjectId == id]
+
+# Resources
+@router.get("/{id}/resources")
+def get_project_resources(id: int):
+    return [r for r in dd.ProjectResources if r.ProjectId == id]
+
+# Revenues
+@router.get("/{id}/revenues")
+def get_project_revenues(id: int):
+    return [r for r in dd.ProjectRevenues if r.ProjectId == id]
+
+# Tasks
+@router.get("/{id}/tasks")
+def get_project_tasks(id: int):
+    return [t for t in dd.ProjectTasks if t.ProjectId == id]
+
+# Teams
+@router.get("/{id}/teams")
+def get_project_teams(id: int):
+    return [t for t in dd.ProjectTeams if t.ProjectId == id]
