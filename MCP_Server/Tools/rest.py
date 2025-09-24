@@ -1,307 +1,3 @@
-# import pandas as pd
-
-# def fetch_table_contract():
-#     data = {
-#         "ID": [
-#             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26
-#         ],
-#         "API Endpoint": [
-#             "/rest/contracts/",
-#             "/rest/contracts/{id}",
-#             "/rest/contracts/{id}/contract-clauses",
-#             "/rest/contracts/{id}/contract-clauses/{clause_id}",
-#             "/rest/contracts/{id}/mods",
-#             "/rest/contracts/{id}/mods/{mod_number}",
-#             "/rest/contracts/{id}/projects",
-#             "/rest/contracts/{id}/projects/available/expense-types",
-#             "/rest/contracts/{id}/projects/available/labor-categories",
-#             "/rest/contracts/{id}/projects/available/tasks",
-#             "/rest/contracts/{id}/wage-determinations",
-#             "/rest/contracts/{id}/wage-determinations/{wage_determination_id}",
-#             "/rest/contracts/additional-item-types",
-#             "/rest/contracts/billing-analysts",
-#             "/rest/contracts/contract-clauses",
-#             "/rest/contracts/contract-clauses/{id}",
-#             "/rest/contracts/contract-clauses/agencies",
-#             "/rest/contracts/contract-clauses/agencies/{id}",
-#             "/rest/contracts/contract-clauses/import/definition",
-#             "/rest/contracts/contract-managers",
-#             "/rest/contracts/owning-organizations",
-#             "/rest/contracts/owning-organizations/{owning_org_id}/master-contracts",
-#             "/rest/contracts/provisions",
-#             "/rest/contracts/statuses",
-#             "/rest/contracts/statuses/{id}",
-#             "/rest/contracts/types",
-#             "/rest/contracts/types/{id}"
-#         ],
-#         "Example Intent String": [
-#             "List all contracts.",
-#             "Get a specific contract's details.",
-#             "List all contract clauses.",
-#             "Get a specific contract clause.",
-#             "List contract modifications.",
-#             "Get a specific modification.",
-#             "List projects for a contract.",
-#             "List available expense types for a contract.",
-#             "List available labor categories for a contract.",
-#             "List available tasks for a contract.",
-#             "List wage determinations for a contract.",
-#             "Get a specific wage determination.",
-#             "List all additional item types.",
-#             "List all billing analysts.",
-#             "List all contract clauses.",
-#             "Get a specific contract clause.",
-#             "List all contract clause agencies.",
-#             "Get specific agency details.",
-#             "What fields are in the contract clause import definition?",
-#             "List all contract managers.",
-#             "List all owning organizations.",
-#             "List master contracts for an owning organization.",
-#             "List all provisions.",
-#             "List all contract statuses.",
-#             "Get a specific contract status.",
-#             "List all contract types.",
-#             "Get a specific contract type."
-#         ]
-#     }
-
-#     # Create a pandas DataFrame from the dictionary
-#     return pd.DataFrame(data)
-
-# def fetch_table_expenses():
-#     data = {
-#         "ID": [
-#             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
-#         ],
-#         "API Endpoint": [
-#             "/rest/expenses/{id}",
-#             "/rest/expenses/{id}/attachments",
-#             "/rest/expenses/{id}/attachments/{attachment_id}",
-#             "/rest/expenses/{id}/details/{detail_id}",
-#             "/rest/expenses/{id}/expense-types",
-#             "/rest/expenses/{id}/history",
-#             "/rest/expenses/{id}/meal-caps",
-#             "/rest/expenses/{id}/payment-methods",
-#             "/rest/expenses/{id}/project-types",
-#             "/rest/expenses/{id}/projects",
-#             "/rest/expenses/{id}/validate",
-#             "/rest/expenses/projects",
-#             "/rest/expenses/vat-locations",
-#             "/rest/expenses/vat-locations/{id}"
-#         ],
-#         "Example Intent String": [
-#             "Get expense details.",
-#             "List expense attachments.",
-#             "Get a specific attachment.",
-#             "Get a specific detail.",
-#             "List expense types.",
-#             "Show expense history.",
-#             "What is the meal cap?",
-#             "List payment methods.",
-#             "What are the project types?",
-#             "List projects.",
-#             "Validate the expense.",
-#             "List projects by owner.",
-#             "List all VAT locations.",
-#             "Get a specific VAT location."
-#         ]
-#     }
-
-#     return pd.DataFrame(data)
-
-# def fetch_table_people():
-#     data = {
-#         "ID": [
-#             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21
-#         ],
-#         "API Endpoint": [
-#             "/rest/people",
-#             "/rest/people/{id}",
-#             "/rest/people/{id}/accrual-plans",
-#             "/rest/people/{id}/accrual-plans/{personAccrualPlanId}",
-#             "/rest/people/{id}/alternates",
-#             "/rest/people/{id}/approval-groups/approver",
-#             "/rest/people/{id}/approval-groups/submitter/expense-report",
-#             "/rest/people/{id}/approval-groups/submitter/expense-request",
-#             "/rest/people/{id}/approval-groups/submitter/leave",
-#             "/rest/people/{id}/approval-groups/submitter/time",
-#             "/rest/people/{id}/attachments",
-#             "/rest/people/{id}/attachments/{attachmentId}",
-#             "/rest/people/{id}/available-alternates",
-#             "/rest/people/{id}/benefits-values",
-#             "/rest/people/{id}/benefits-values/{benefitsValueId}",
-#             "/rest/people/{id}/classification/{date}",
-#             "/rest/people/{id}/payroll",
-#             "/rest/people/{id}/rates",
-#             "/rest/people/{id}/rates/{rateId}",
-#             "/rest/people/{id}/skills",
-#             "/rest/people/list"
-#         ],
-#         "Example Intent String": [
-#             "List all people.",
-#             "Get person details.",
-#             "List person's accrual plans.",
-#             "Get a specific accrual plan.",
-#             "List a person's alternates.",
-#             "List approver groups.",
-#             "List expense report approval groups.",
-#             "List expense request approval groups.",
-#             "List leave approval groups.",
-#             "List time approval groups.",
-#             "List person's attachments.",
-#             "Get a specific attachment.",
-#             "List available alternates.",
-#             "List person's benefits.",
-#             "Get a specific benefit.",
-#             "Get person's classification.",
-#             "Get person's payroll details.",
-#             "List person's rates.",
-#             "Get a specific rate.",
-#             "List person's skills.",
-#             "Get a summary of people."
-#         ]
-#     }
-
-#     return pd.DataFrame(data)
-
-# def fetch_table_projects():
-#     data = {
-#         "ID": [
-#             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
-#             26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41
-#         ],
-#         "API Endpoint": [
-#             "/rest/projects/{id}",
-#             "/rest/projects/{id}/accounts",
-#             "/rest/projects/{id}/admin/billing-managers/alternate",
-#             "/rest/projects/{id}/admin/billing-managers/primary",
-#             "/rest/projects/{id}/admin/billing-viewers/alternate",
-#             "/rest/projects/{id}/admin/billing-viewers/primary",
-#             "/rest/projects/{id}/admin/customers/alternates",
-#             "/rest/projects/{id}/admin/customers/primary",
-#             "/rest/projects/{id}/admin/document-viewers/alternate",
-#             "/rest/projects/{id}/admin/document-viewers/primary",
-#             "/rest/projects/{id}/admin/leads/alternate",
-#             "/rest/projects/{id}/admin/leads/primary",
-#             "/rest/projects/{id}/admin/managers/alternate",
-#             "/rest/projects/{id}/admin/managers/primary",
-#             "/rest/projects/{id}/admin/po-viewers/alternate",
-#             "/rest/projects/{id}/admin/po-viewers/primary",
-#             "/rest/projects/{id}/admin/pr-viewers/alternate",
-#             "/rest/projects/{id}/admin/pr-viewers/primary",
-#             "/rest/projects/{id}/admin/project-approvers/alternates",
-#             "/rest/projects/{id}/admin/project-approvers/primary",
-#             "/rest/projects/{id}/admin/resource-assigners/alternate",
-#             "/rest/projects/{id}/admin/resource-assigners/primary",
-#             "/rest/projects/{id}/admin/resource-planners/alternate",
-#             "/rest/projects/{id}/admin/resource-planners/primary",
-#             "/rest/projects/{id}/admin/resource-requestors/alternate",
-#             "/rest/projects/{id}/admin/resource-requestors/primary",
-#             "/rest/projects/{id}/admin/viewers/alternate",
-#             "/rest/projects/{id}/admin/viewers/primary",
-#             "/rest/projects/{id}/alert-config",
-#             "/rest/projects/{id}/alerts",
-#             "/rest/projects/{id}/budget-history",
-#             "/rest/projects/{id}/budget-snapshots/{budget_snapshot_id}",
-#             "/rest/projects/{id}/cost-rates",
-#             "/rest/projects/{id}/expense-budgets/{exp_budget_id}",
-#             "/rest/projects/{id}/expense-plans/{exp_plan_id}",
-#             "/rest/projects/{id}/expense-types",
-#             "/rest/projects/{id}/expense-types/{expense_type_id}"
-#         ],
-#         "Example Intent String": [
-#             "Get project details.",
-#             "List project accounts.",
-#             "List alternate billing managers.",
-#             "Get primary billing manager.",
-#             "List alternate billing viewers.",
-#             "Get primary billing viewer.",
-#             "List alternate customers.",
-#             "Get primary customer.",
-#             "List alternate document viewers.",
-#             "Get primary document viewer.",
-#             "List alternate leads.",
-#             "Get primary lead.",
-#             "List alternate managers.",
-#             "Get primary manager.",
-#             "List alternate PO viewers.",
-#             "Get primary PO viewer.",
-#             "List alternate PR viewers.",
-#             "Get primary PR viewer.",
-#             "List alternate project approvers.",
-#             "Get primary project approver.",
-#             "List alternate resource assigners.",
-#             "Get primary resource assigner.",
-#             "List alternate resource planners.",
-#             "Get primary resource planner.",
-#             "List alternate resource requestors.",
-#             "Get primary resource requestor.",
-#             "List alternate viewers.",
-#             "Get primary viewer.",
-#             "Get project alert configuration.",
-#             "List project alerts.",
-#             "Show budget history.",
-#             "Get a specific budget snapshot.",
-#             "List project cost rates.",
-#             "Get a specific expense budget.",
-#             "Get a specific expense plan.",
-#             "List project expense types.",
-#             "Get a specific expense type."
-#         ]
-#     }
-
-#     return pd.DataFrame(data)
-
-# def fetch_table_timesheets():
-#     data = {
-#         "ID": [
-#             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
-#         ],
-#         "API Endpoint": [
-#             "/rest/time",
-#             "/rest/time/{id}",
-#             "/rest/time/{id}/adjustments",
-#             "/rest/time/{id}/attachment/{attachmentId}",
-#             "/rest/time/{id}/attachments",
-#             "/rest/time/{id}/audit",
-#             "/rest/time/{id}/auto-fill",
-#             "/rest/time/{id}/auto-fill/deleted",
-#             "/rest/time/{id}/history",
-#             "/rest/time/{id}/items/audit",
-#             "/rest/time/{id}/offline",
-#             "/rest/time/{id}/project-types",
-#             "/rest/time/{id}/projects",
-#             "/rest/time/{id}/projects/{projectId}/labor-categories",
-#             "/rest/time/{id}/projects/{projectId}/locations",
-#             "/rest/time/{id}/tasks/{taskId}/labor-categories",
-#             "/rest/time/{id}/tasks/{taskId}/locations",
-#             "/rest/time/{id}/validate"
-#         ],
-#         "Example Intent String": [
-#             "Get all timesheets.",
-#             "Get details for a specific timesheet.",
-#             "List timesheet adjustments.",
-#             "Get a specific timesheet attachment.",
-#             "List timesheet attachments.",
-#             "Get the timesheet audit log.",
-#             "Show auto-fill options for the timesheet.",
-#             "List deleted auto-fill data for the timesheet.",
-#             "View the history for this timesheet.",
-#             "Get the audit log for timesheet items.",
-#             "Retrieve the offline timesheet data.",
-#             "List available project types for the timesheet.",
-#             "List projects associated with the timesheet.",
-#             "Get labor categories for this project.",
-#             "Get locations for this project.",
-#             "Get labor categories for a specific task.",
-#             "Get locations for a specific task.",
-#             "Validate the timesheet."
-#         ]
-#     }
-
-#     # Create a pandas DataFrame from the dictionary
-#     return pd.DataFrame(data)
-
 import pandas as pd
 
 def fetch_table_contract():
@@ -336,42 +32,41 @@ def fetch_table_contract():
     ]
 
     intents = [
-        "List all contracts.",
-        "Get a specific contract's details.",
-        "List all contract clauses.",
-        "Get a specific contract clause.",
-        "List contract modifications.",
-        "Get a specific modification.",
-        "List projects for a contract.",
-        "List available expense types for a contract.",
-        "List available labor categories for a contract.",
-        "List available tasks for a contract.",
-        "List wage determinations for a contract.",
-        "Get a specific wage determination.",
-        "List all additional item types.",
-        "List all billing analysts.",
-        "List all contract clauses.",
-        "Get a specific contract clause.",
-        "List all contract clause agencies.",
-        "Get specific agency details.",
-        "What fields are in the contract clause import definition?",
-        "List all contract managers.",
-        "List all owning organizations.",
-        "List master contracts for an owning organization.",
-        "List all provisions.",
-        "List all contract statuses.",
-        "Get a specific contract status.",
-        "List all contract types.",
-        "Get a specific contract type.",
+        "Retrieve a complete list of all contracts available in the system, including basic contract details such as ID, title, and status.",
+        "Retrieve detailed information about a specific contract by its unique ID, including parties, dates, and key metadata.",
+        "List all clauses associated with a specific contract, showing each clause’s title, type, and description.",
+        "Retrieve the details of a specific contract clause by its clause ID within a contract, including text, type, and applicable rules.",
+        "List all modifications made to a specific contract, including mod number, description, and dates of changes.",
+        "Retrieve detailed information about a specific contract modification by its mod number, including changes and effective date.",
+        "List all projects linked to a specific contract, showing project names, IDs, and associated budget information.",
+        "Retrieve all available expense types for a specific contract, including description and applicable rules.",
+        "List all labor categories available for a specific contract, including rates, roles, and classification.",
+        "Retrieve a list of all tasks available under a specific contract, including task descriptions and assigned roles.",
+        "List all wage determinations applicable to a specific contract, including classification, rates, and effective dates.",
+        "Retrieve detailed information about a specific wage determination by ID, including labor category, pay rate, and rules.",
+        "List all types of additional items that can be associated with contracts, including their description and usage rules.",
+        "Retrieve a list of all billing analysts responsible for contracts, including their contact information and roles.",
+        "Retrieve all contract clauses available across all contracts, including their titles, types, and descriptions.",
+        "Retrieve details of a specific contract clause by its global ID, including text, type, and applicable rules.",
+        "List all agencies associated with contract clauses, including agency name, ID, and relevant clause information.",
+        "Retrieve detailed information about a specific agency related to contract clauses, including rules and applicable contracts.",
+        "Retrieve a list of all fields defined in the contract clause import template, including name, type, and required status.",
+        "List all contract managers responsible for managing contracts, including their contact details and assigned contracts.",
+        "Retrieve all organizations that own or manage contracts in the system, including names, IDs, and associated contracts.",
+        "List all master contracts associated with a specific owning organization, including contract ID, title, and status.",
+        "Retrieve all contract provisions, including provision ID, text, type, and applicable contracts.",
+        "List all contract statuses available in the system, including status ID, name, and description.",
+        "Retrieve detailed information about a specific contract status by ID, including name, description, and rules.",
+        "List all contract types defined in the system, including type ID, name, and description.",
+        "Retrieve detailed information about a specific contract type by ID, including name, description, and applicable rules.",
     ]
 
     data = {
         "ID": list(range(1, len(endpoints) + 1)),
         "API Endpoint": endpoints,
-        "Example Intent String": intents,
+        "Intents": intents,
     }
     return pd.DataFrame(data)
-
 
 def fetch_table_expenses():
     endpoints = [
@@ -392,29 +87,28 @@ def fetch_table_expenses():
     ]
 
     intents = [
-        "Get expense details.",
-        "List expense attachments.",
-        "Get a specific attachment.",
-        "Get a specific detail.",
-        "List expense types.",
-        "Show expense history.",
-        "What is the meal cap?",
-        "List payment methods.",
-        "What are the project types?",
-        "List projects.",
-        "Validate the expense.",
-        "List projects by owner.",
-        "List all VAT locations.",
-        "Get a specific VAT location.",
+        "Retrieve detailed information about a specific expense, including date, amount, and associated project or category.",
+        "List all attachments associated with a specific expense, including file names and metadata.",
+        "Retrieve a specific attachment for a particular expense by attachment ID, including file details.",
+        "Get a specific expense detail by detail ID, including line items, descriptions, and amounts.",
+        "List all available expense types for categorizing expenses, including descriptions and applicable rules.",
+        "Retrieve the full history of a specific expense, including submission, approval, and modification events.",
+        "Get the meal cap information applicable to a specific expense, including limits and rules.",
+        "List all available payment methods for a specific expense, including method type and details.",
+        "Retrieve all available project types associated with a specific expense, including project classifications.",
+        "List all projects linked to a specific expense, including project IDs and names.",
+        "Validate a specific expense to ensure all required fields, amounts, and approvals are correct.",
+        "List all projects by their owners, including project IDs, names, and responsible personnel.",
+        "Retrieve all VAT (Value Added Tax) locations available for expenses, including names and IDs.",
+        "Get detailed information about a specific VAT location by its ID, including applicable rules and address.",
     ]
 
     data = {
         "ID": list(range(1, len(endpoints) + 1)),
         "API Endpoint": endpoints,
-        "Example Intent String": intents,
+        "Intents": intents,
     }
     return pd.DataFrame(data)
-
 
 def fetch_table_people():
     endpoints = [
@@ -442,36 +136,35 @@ def fetch_table_people():
     ]
 
     intents = [
-        "List all people.",
-        "Get person details.",
-        "List person's accrual plans.",
-        "Get a specific accrual plan.",
-        "List a person's alternates.",
-        "List approver groups.",
-        "List expense report approval groups.",
-        "List expense request approval groups.",
-        "List leave approval groups.",
-        "List time approval groups.",
-        "List person's attachments.",
-        "Get a specific attachment.",
-        "List available alternates.",
-        "List person's benefits.",
-        "Get a specific benefit.",
-        "Get person's classification.",
-        "Get person's payroll details.",
-        "List person's rates.",
-        "Get a specific rate.",
-        "List person's skills.",
-        "Get a summary of people.",
+        "Retrieve a complete list of all people in the system, including basic details such as name, ID, and role.",
+        "Get detailed information about a specific person by their unique ID, including personal and professional details.",
+        "List all accrual plans associated with a specific person, showing plan names, balances, and types.",
+        "Retrieve detailed information about a specific accrual plan for a person by plan ID, including dates and balances.",
+        "List all alternate contacts for a specific person, including names, roles, and contact information.",
+        "List all approval groups where the person acts as an approver, including group names and responsibilities.",
+        "List all expense report approval groups associated with a specific person as a submitter.",
+        "List all expense request approval groups associated with a specific person as a submitter.",
+        "List all leave approval groups associated with a specific person as a submitter.",
+        "List all time approval groups associated with a specific person as a submitter.",
+        "Retrieve all attachments associated with a specific person, including file names, types, and metadata.",
+        "Get a specific attachment for a person by attachment ID, including detailed file information.",
+        "List all alternates available for a person, including names and roles, for approval or delegation purposes.",
+        "Retrieve all benefit values for a specific person, including benefit type, amount, and eligibility.",
+        "Get detailed information about a specific benefit value by ID for a person.",
+        "Retrieve the classification information of a person for a specific date, including role and position details.",
+        "Get payroll details for a specific person, including salary, deductions, and payment history.",
+        "List all pay rates associated with a person, including rate type, amount, and effective dates.",
+        "Get a specific pay rate for a person by rate ID, including details and applicability.",
+        "List all skills associated with a person, including skill names, levels, and certifications.",
+        "Retrieve a summary list of people, including key details like name, ID, and department.",
     ]
 
     data = {
         "ID": list(range(1, len(endpoints) + 1)),
         "API Endpoint": endpoints,
-        "Example Intent String": intents,
+        "Intents": intents,
     }
     return pd.DataFrame(data)
-
 
 def fetch_table_projects():
     endpoints = [
@@ -515,52 +208,51 @@ def fetch_table_projects():
     ]
 
     intents = [
-        "Get project details.",
-        "List project accounts.",
-        "List alternate billing managers.",
-        "Get primary billing manager.",
-        "List alternate billing viewers.",
-        "Get primary billing viewer.",
-        "List alternate customers.",
-        "Get primary customer.",
-        "List alternate document viewers.",
-        "Get primary document viewer.",
-        "List alternate leads.",
-        "Get primary lead.",
-        "List alternate managers.",
-        "Get primary manager.",
-        "List alternate PO viewers.",
-        "Get primary PO viewer.",
-        "List alternate PR viewers.",
-        "Get primary PR viewer.",
-        "List alternate project approvers.",
-        "Get primary project approver.",
-        "List alternate resource assigners.",
-        "Get primary resource assigner.",
-        "List alternate resource planners.",
-        "Get primary resource planner.",
-        "List alternate resource requestors.",
-        "Get primary resource requestor.",
-        "List alternate viewers.",
-        "Get primary viewer.",
-        "Get project alert configuration.",
-        "List project alerts.",
-        "Show budget history.",
-        "Get a specific budget snapshot.",
-        "List project cost rates.",
-        "Get a specific expense budget.",
-        "Get a specific expense plan.",
-        "List project expense types.",
-        "Get a specific expense type.",
+        "Retrieve detailed information about a specific project, including project ID, name, description, and status.",
+        "List all accounts associated with a specific project, including account IDs and details.",
+        "List all alternate billing managers for a specific project, including their names and roles.",
+        "Retrieve the primary billing manager for a project, including contact details and responsibilities.",
+        "List all alternate billing viewers for a specific project, including names and permissions.",
+        "Retrieve the primary billing viewer for a project, including roles and access details.",
+        "List all alternate customers for a project, including customer names and IDs.",
+        "Retrieve the primary customer for a project, including detailed contact and role information.",
+        "List all alternate document viewers for a project, including names and permissions.",
+        "Retrieve the primary document viewer for a project, including access and responsibility details.",
+        "List all alternate leads associated with a project, including names and roles.",
+        "Retrieve the primary lead for a project, including contact details and assigned responsibilities.",
+        "List all alternate managers for a project, including names and roles.",
+        "Retrieve the primary manager for a project, including contact details and responsibilities.",
+        "List all alternate PO (Purchase Order) viewers for a project, including names and access permissions.",
+        "Retrieve the primary PO viewer for a project, including role and contact information.",
+        "List all alternate PR (Purchase Request) viewers for a project, including names and permissions.",
+        "Retrieve the primary PR viewer for a project, including responsibilities and contact details.",
+        "List all alternate project approvers, including names and approval roles.",
+        "Retrieve the primary project approver for a project, including responsibilities and contact details.",
+        "List all alternate resource assigners for a project, including names and roles.",
+        "Retrieve the primary resource assigner for a project, including role and responsibilities.",
+        "List all alternate resource planners for a project, including names and assigned tasks.",
+        "Retrieve the primary resource planner for a project, including responsibilities and contact info.",
+        "List all alternate resource requestors for a project, including names and roles.",
+        "Retrieve the primary resource requestor for a project, including responsibilities and contact info.",
+        "List all alternate viewers for a project, including access permissions and names.",
+        "Retrieve the primary viewer for a project, including role and access details.",
+        "Retrieve the alert configuration for a project, including settings and thresholds.",
+        "List all alerts associated with a project, including alert types, dates, and status.",
+        "Retrieve the budget history for a project, including historical budgets and changes over time.",
+        "Get a specific budget snapshot for a project, including snapshot ID, amounts, and date.",
+        "List all cost rates associated with a project, including labor rates and overheads.",
+        "Retrieve a specific expense budget for a project, including budget ID, amount, and allocations.",
+        "Retrieve a specific expense plan for a project, including plan ID, type, and budget allocations.",
+        "List all expense types available for a project, including type names and descriptions.",
+        "Retrieve detailed information about a specific expense type for a project, including type ID and rules.",
     ]
 
     data = {
         "ID": list(range(1, len(endpoints) + 1)),
         "API Endpoint": endpoints,
-        "Example Intent String": intents,
+        "Intents": intents,
     }
     return pd.DataFrame(data)
-
 
 def fetch_table_timesheets():
     endpoints = [
@@ -585,29 +277,29 @@ def fetch_table_timesheets():
     ]
 
     intents = [
-        "Get all timesheets.",
-        "Get details for a specific timesheet.",
-        "List timesheet adjustments.",
-        "Get a specific timesheet attachment.",
-        "List timesheet attachments.",
-        "Get the timesheet audit log.",
-        "Show auto-fill options for the timesheet.",
-        "List deleted auto-fill data for the timesheet.",
-        "View the history for this timesheet.",
-        "Get the audit log for timesheet items.",
-        "Retrieve the offline timesheet data.",
-        "List available project types for the timesheet.",
-        "List projects associated with the timesheet.",
-        "Get labor categories for this project.",
-        "Get locations for this project.",
-        "Get labor categories for a specific task.",
-        "Get locations for a specific task.",
-        "Validate the timesheet.",
+        "Retrieve a complete list of all timesheets in the system, including basic timesheet IDs, periods, and status.",
+        "Get detailed information for a specific timesheet by ID, including employee, hours, and approval status.",
+        "List all adjustments applied to a specific timesheet, including adjustment type, amount, and reason.",
+        "Retrieve a specific attachment associated with a timesheet by attachment ID, including file details.",
+        "List all attachments for a specific timesheet, including file names, types, and metadata.",
+        "Get the full audit log for a specific timesheet, showing changes, approvals, and submissions.",
+        "Show auto-fill options applied to a specific timesheet, including generated hours and adjustments.",
+        "List deleted auto-fill entries for a specific timesheet, including who deleted them and when.",
+        "Retrieve the complete history for a specific timesheet, including submission, approval, and modification events.",
+        "Get the audit log for individual items in a timesheet, including changes and responsible personnel.",
+        "Retrieve offline timesheet data for a specific timesheet, useful for offline review or processing.",
+        "List all project types associated with a timesheet, including names and classifications of project categories.",
+        "List all projects linked to a specific timesheet, including project IDs, names, and relevant hours.",
+        "Get labor categories associated with a project in a timesheet, including category names, roles, and rates.",
+        "Retrieve all locations associated with a project in a timesheet, including site names and codes.",
+        "Get labor categories for a specific task within a timesheet, including names, roles, and applicable rates.",
+        "Get locations for a specific task within a timesheet, including site details and codes.",
+        "Validate a specific timesheet to ensure all required fields, hours, and approvals are correct and complete.",
     ]
 
     data = {
         "ID": list(range(1, len(endpoints) + 1)),
         "API Endpoint": endpoints,
-        "Example Intent String": intents,
+        "Intents": intents,
     }
     return pd.DataFrame(data)

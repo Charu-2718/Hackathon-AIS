@@ -4,8 +4,9 @@ from openai import AzureOpenAI
 
 load_dotenv()
 
+AZURE_KEY = os.getenv("OPENAI_KEY")
+
 AZURE_ENDPOINT = os.getenv("OPENAI_ENDPOINT")  
-AZURE_KEY = os.getenv("OPENAI_KEY")  
 AZURE_DEPLOYMENT_NAME = os.getenv("OPENAI_DEPLOYMENT_NAME")
 AZURE_API_VERSION = os.getenv("OPENAI_API_VERSION")
 
