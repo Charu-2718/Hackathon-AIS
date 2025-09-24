@@ -1,3 +1,4 @@
+from data import save_all_data
 from parse_context import parse_context
 from openai import OpenAI
 import os
@@ -16,4 +17,4 @@ from default_embeddings import default_embeddings
 
 df = default_embeddings(client = client, AZURE_DEPLOYMENT = "text-embedding-3-large")
 
-print(df["Embeddings"])
+# save_all_data(df)

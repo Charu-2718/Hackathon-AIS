@@ -25,5 +25,5 @@ def default_embeddings(client, AZURE_DEPLOYMENT):
     # format: id endpoint intent embedding
     return dfs
 
-def default_embeddings():
-    return "This will be a dataframe"
+# def default_embeddings():
+#     return "This will be a dataframe"

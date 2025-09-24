@@ -303,3 +303,10 @@ def fetch_table_timesheets():
         "Intents": intents,
     }
     return pd.DataFrame(data)
+
+
+# print("Contracts:", df_contract.shape)
+# print("Expenses:", df_expenses.shape)
+# print("People:", df_people.shape)
+# print("Projects:", df_projects.shape)
+# print("Timesheets:", fetch_table_timesheets().shape)
