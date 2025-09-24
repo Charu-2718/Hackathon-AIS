@@ -66,4 +66,5 @@ def parse_context(client, input):
     embeddings_dict = default_embeddings(client)
 
     best_text = max(embeddings_dict, key=lambda t: cosine_similarity(query_vec, embeddings_dict[t]))
+    
     return best_text

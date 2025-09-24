@@ -24,3 +24,6 @@ def default_embeddings(client, AZURE_DEPLOYMENT):
     # Store each value(each controller's dataframe) from dfs into local file system (make a new folder and store json file)
     # format: id endpoint intent embedding
     return dfs
+
+def default_embeddings():
+    return "This will be a dataframe"

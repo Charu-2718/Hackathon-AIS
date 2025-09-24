@@ -35,6 +35,7 @@ async def websocket_chat(websocket: WebSocket):
     await websocket.accept()
     try:
         while True:
+            # ADD A CONIDITON TO CHECK IF ITS GENERAL CHAT OR REQUIRES MCP
             data = await websocket.receive_text()
             bot_response = create_response(client = client, 
                                            deployment_name = deployment_name, 
