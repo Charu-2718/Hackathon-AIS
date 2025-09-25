@@ -75,42 +75,38 @@ PLACEHOLDER_KEYWORDS = {
 }
 
 def map_numbers_to_placeholders(input_text: str, endpoint_template: str) -> dict:
-    """
-    Map numbers from input_text to all placeholders in endpoint_template
-    based on keywords, and return a dict like {id: 5, attachmentId: 10}.
-    """
     lowered_text = input_text.lower()
     placeholders = re.findall(r"\{(\w+)\}", endpoint_template)
     entities = {}
-
-    # Extract numbers with preceding words
+    # Matches returns list of (context_word_part, number)
     matches = re.findall(r"([\w\s]+?)\s+(\d+)", lowered_text)
-
+    # Convert to list of (word, int_num)
+    matches = [(word.strip(), int(num)) for word, num in matches]
     used_numbers = set()
 
+    # First pass: keyword-based assignment
     for ph in placeholders:
         keywords = PLACEHOLDER_KEYWORDS.get(ph, [])
-        assigned = False
         for word, num in matches:
-            num_int = int(num)
-            if num_int in used_numbers:
+            if num in used_numbers:
                 continue
             for kw in keywords:
                 if kw in word:
-                    entities[ph] = num_int
-                    used_numbers.add(num_int)
-                    assigned = True
+                    entities[ph] = num
+                    used_numbers.add(num)
                     break
-            if assigned:
+            if ph in entities:
                 break
-        # Fallback: assign first unused number if keyword not found
-        if not assigned:
-            for _, num in matches:
-                num_int = int(num)
-                if num_int not in used_numbers:
-                    entities[ph] = num_int
-                    used_numbers.add(num_int)
-                    break
+
+    # Second pass: fallback assignment of unassigned placeholders
+    unused_placeholders = [ph for ph in placeholders if ph not in entities]
+    unused_numbers = [num for _, num in matches if num not in used_numbers]
+    for ph in unused_placeholders:
+        if unused_numbers:
+            entities[ph] = unused_numbers.pop(0)
+        else:
+            # no number left to assign
+            pass
 
     return entities
 
@@ -184,9 +180,12 @@ def parse_context(input_text):
                 max_id = each.get("ID")
                 best_api_endpoint = api_ep
 
+    placeholder_mapping = map_numbers_to_placeholders(input_text, best_api_endpoint)
+    print(placeholder_mapping)
+    filled_endpoint = fill_endpoint(best_api_endpoint, placeholder_mapping)
     # you can print or return
     #print("Best match:", max_endpoint, max_id, best_api_endpoint, "with sim:", max_similarity)
-    return max_endpoint, max_id, best_api_endpoint
+    return filled_endpoint
 
 # inputs = [
 #     "List all people",
