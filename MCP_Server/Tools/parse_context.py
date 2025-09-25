@@ -17,6 +17,44 @@ client = OpenAI(
     base_url = AZURE_ENDPOINT
 )
 
+MCP_KEYWORDS = [
+    # high-level modules
+    "contracts", "contract", "expenses", "expense", "projects", "project",
+    "timesheets", "timesheet", "people", "person",
+
+    # contract-related
+    "clauses", "mod", "wage-determination", "billing", "provisions", "statuses",
+    "types", "organizations", "owning-organizations",
+
+    # expense-related
+    "attachments", "attachment", "details", "history", "meal-caps", "payment-methods",
+    "vat", "validate",
+
+    # project-related
+    "accounts", "billing-managers", "customers", "document", "leads", "approvers",
+    "resource", "viewers", "alerts", "budget", "cost-rates", "fixed-price", "invoice",
+    "items", "labor-categories", "notes", "comments", "audit", "pay-codes",
+    "people-assignments", "plan-sets", "tasks", "pre-billed", "prebilled", "pre_billed",
+    "pre_billed_labor", "prebilled_labor", "pre_billed", "prebilled", "predecessors",
+
+    # timesheet / time
+    "adjustments", "auto-fill", "offline", "validate", "time", "timesheet", "timesheets",
+
+    # people / person module
+    "accrual-plans", "accrualplans", "alternates", "approval-groups", "approver",
+    "submitter", "expense-report", "expense-request", "leave", "attachments",
+    "benefits-values", "benefitsvalues", "classification", "payroll", "rates", "skills",
+    "summaries", "people-list", "peoplelist"
+]
+
+_keyword_pattern = re.compile(
+    r"\b(" + "|".join(re.escape(kw) for kw in MCP_KEYWORDS) + r")\b",
+    flags = re.IGNORECASE
+)
+
+# print(_keyword_pattern.search("Hi who is Shashank Dimri"))
+# print(_keyword_pattern.search("Provide the list of of all contract manager"))
+
 # Mapping of placeholder -> keywords to look for in the text
 PLACEHOLDER_KEYWORDS = {
     "id": ["timesheet", "time", "expense", "contract", "project", "person"],
@@ -35,7 +73,6 @@ PLACEHOLDER_KEYWORDS = {
     "owning_org_id": ["organization", "owning organization"],
     "budget_snapshot_id": ["budget_snapshot", "budget snapshot"]
 }
-
 
 def map_numbers_to_placeholders(input_text: str, endpoint_template: str) -> dict:
     """
@@ -76,9 +113,6 @@ def map_numbers_to_placeholders(input_text: str, endpoint_template: str) -> dict
                     break
 
     return entities
-
-
-
 
 # After defining map_numbers_to_placeholders, add this helper
 def fill_endpoint(endpoint_template: str, placeholder_mapping: dict) -> str:
@@ -131,6 +165,8 @@ def parse_context(input_text):
     best_api_endpoint = None
 
     for endpoint, items in data.items():
+        if _keyword_pattern.search(input_text) == None:
+            return None
         for each in items:
             api_ep = each.get("API Endpoint")
             if match(entities_count, api_ep) == False:
@@ -152,49 +188,52 @@ def parse_context(input_text):
     #print("Best match:", max_endpoint, max_id, best_api_endpoint, "with sim:", max_similarity)
     return max_endpoint, max_id, best_api_endpoint
 
-inputs = [
-    "List all people",
-    "Get all alerts for project 5.",
-    "Get attachment 10 for timesheet 5.",
-    "Get the list of locations for project ID 2 in timesheet ID 1",
-    "Show locations for task ID 9 in timesheet ID 3.",
-    "Show labor categories for task ID 7 in timesheet ID 2.",
-    "List all labor categories for project 2 under timesheet 10.",
-    "Fetch attachment 2 in timesheet 1.",
-    "Retrieve the details of budget snapshot 10 from project 1.",
-    "Show expense budget ID 2 in project ID 3.",
-    "Get expense plan 5 for project 2.",
-    "Retrieve details for expense type 8 of project 2.",
-    "Get attachment 10 for expense 5.",
-    "Get clause 2 for contract 4.",
-    "Get mod 1 for contract 5.",
-    "Get detail 3 for expense 7.",
-    "Get wage determination 3 for contract 2.",
-    "Get master contracts for owning organization 7.",
-    "Get rate 5 for person 2.",
-    "Get benefits value 3 for person 4.",
-    "Get accrual plan 2 for person 6.",
-    "Get attachment 8 for person 3."
+# inputs = [
+#     "List all people",
+#     "Get all alerts for project 5.",
+#     "Get attachment 10 for timesheet 5.",
+#     "Get the list of locations for project ID 2 in timesheet ID 1",
+#     "Show locations for task ID 9 in timesheet ID 3.",
+#     "Show labor categories for task ID 7 in timesheet ID 2.",
+#     "List all labor categories for project 2 under timesheet 10.",
+#     "Fetch attachment 2 in timesheet 1.",
+#     "Retrieve the details of budget snapshot 10 from project 1.",
+#     "Show expense budget ID 2 in project ID 3.",
+#     "Get expense plan 5 for project 2.",
+#     "Retrieve details for expense type 8 of project 2.",
+#     "Get attachment 10 for expense 5.",
+#     "Get clause 2 for contract 4.",
+#     "Get mod 1 for contract 5.",
+#     "Get detail 3 for expense 7.",
+#     "Get wage determination 3 for contract 2.",
+#     "Get master contracts for owning organization 7.",
+#     "Get rate 5 for person 2.",
+#     "Get benefits value 3 for person 4.",
+#     "Get accrual plan 2 for person 6.",
+#     "Get attachment 8 for person 3."
     
-]
+# ]
 
 
-for txt in inputs:
-    endpoint_info = parse_context(txt)
-    matched_endpoint = endpoint_info[2]
+# for txt in inputs:
+#     endpoint_info = parse_context(txt)
+#     matched_endpoint = endpoint_info[2]
 
-    # Get mapping of placeholder → number
-    placeholder_mapping = map_numbers_to_placeholders(txt, matched_endpoint)
+#     # Get mapping of placeholder → number
+#     placeholder_mapping = map_numbers_to_placeholders(txt, matched_endpoint)
 
-    # Fill actual endpoint
-    filled_endpoint = fill_endpoint(matched_endpoint, placeholder_mapping)
+#     # Fill actual endpoint
+#     filled_endpoint = fill_endpoint(matched_endpoint, placeholder_mapping)
 
-    print("Original Input:", txt)
-    print("Matched Endpoint:", matched_endpoint)
-    print("Mapping:", placeholder_mapping)
-    print("Filled Endpoint:", filled_endpoint)
-    print("-----")
+#     print("Original Input:", txt)
+#     print("Matched Endpoint:", matched_endpoint)
+#     print("Mapping:", placeholder_mapping)
+#     print("Filled Endpoint:", filled_endpoint)
+#     print("-----")
 
 
-res = parse_context("Get the list of locations for a specific project within a particular timesheet, using the timesheet ID 1 and project ID 2")
-print("Result:", res)
+# res = parse_context("Get the list of locations for a specific project within a particular timesheet, using the timesheet ID 1 and project ID 2")
+# print("Result:", res)
+
+# res = parse_context("How is the weather today?")
+# print("Result:", res)
