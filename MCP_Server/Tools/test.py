@@ -1,4 +1,4 @@
-from data import save_all_data
+#from data import save_all_data
 from parse_context import parse_context
 from openai import OpenAI
 import os
@@ -11,10 +11,25 @@ client = OpenAI(
     base_url = AZURE_ENDPOINT
 )
 
-# print(parse_context(client = client, input = "Tell me about expense 42"))
+print(parse_context(client = client, input = "Tell me about expense 42"))
 
-from default_embeddings import default_embeddings
+# from default_embeddings import default_embeddings
 
-df = default_embeddings(client = client, AZURE_DEPLOYMENT = "text-embedding-3-large")
+# df = default_embeddings(client = client, AZURE_DEPLOYMENT = "text-embedding-3-large")
 
 # save_all_data(df)
+
+
+# import json
+
+# path = "D:\MCP_Unanet\MCP_Server\Tools\Data\data.json"
+
+# with open(path, "r", encoding="utf-8") as f:
+#     data = json.load(f)
+
+# Now data is a Python dict / list depending on JSON structure
+
+# for i in data:
+#     print(i)
+
+#print(data["contracts"][0]["Embeddings"])

@@ -1,70 +1,81 @@
-# import re
-# from MCP_Server.Tools.classify_context import classify_content
-
-# def extract_entity_id(message: str):
-#     """
-#     Extract a numeric ID or code from the message if present.
-#     Example: "Get expense 123" -> "123"
-#              "Tell me about project P001" -> "P001"
-#     """
-#     # First try: find numbers (like expense ID 123)
-#     num_match = re.search(r"\b\d+\b", message)
-#     if num_match:
-#         return num_match.group(0)
-
-#     # Second try: alphanumeric IDs (like P001, T45, etc.)
-#     code_match = re.search(r"\b[A-Za-z]\w+\b", message)
-#     if code_match:
-#         return code_match.group(0)
-
-#     return None
-
-
-# def parse_context(message: str):
-#     # Step 1: classify intent
-#     classified = classify_content(message)
-#     intent_id = classified["id"]
-#     cluster = classified["cluster"]
-#     endpoint_template = classified["endpoint"]
-
-#     # Step 2: extract entity id (different from intent id!)
-#     entity_id = extract_entity_id(message)
-
-#     # Step 3: if endpoint has {id}, replace it
-#     if "{id}" in endpoint_template and entity_id:
-#         final_endpoint = endpoint_template.replace("{id}", str(entity_id))
-#     else:
-#         final_endpoint = endpoint_template
-
-#     return {
-#         "cluster": cluster,
-#         "intent_id": intent_id,    # from classify_context
-#         "entity_id": entity_id,    # extracted from message
-#         "endpoint": final_endpoint,
-#     }
-
-import os 
+import os
 from dotenv import load_dotenv
 import numpy as np
-from default_embeddings import default_embeddings
+import json
+import re
+from openai import OpenAI
 
 load_dotenv()
 
+AZURE_KEY = os.getenv("EMBEDDING_KEY")
+AZURE_ENDPOINT = os.getenv("EMBEDDING_ENDPOINT")
 AZURE_DEPLOYMENT = os.getenv("EMBEDDING_DEPLOYMENT")
+JSON_PATH = os.getenv("JSON_EMBEDDINGS_STORE")
 
-def parse_context(client, input):
-    response = client.embeddings.create(
+client = OpenAI(
+    api_key = AZURE_KEY,
+    base_url = AZURE_ENDPOINT
+)
+
+def extract_int_entities(text: str) -> list[int]:
+    """Extract all integer tokens from text (positive integers)."""
+    matches = re.findall(r"\b\d+\b", text)
+    return [int(m) for m in matches]
+
+def match(entities, endpoint):
+    count = 0
+    for i in endpoint:
+        if i == '{':
+            count += 1
+    return entities == count
+
+def parse_context(client, input_text):
+    entities_count = len(extract_int_entities(input_text))
+    resp = client.embeddings.create(
         model = AZURE_DEPLOYMENT,
-        input = input
+        input = input_text
     )
+    embedding = resp.data[0].embedding
+    query_vec = np.array(embedding, dtype=float)
 
     def cosine_similarity(a, b):
-        return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+        denom = np.linalg.norm(a) * np.linalg.norm(b)
+        if denom == 0:
+            return 0.0
+        return np.dot(a, b) / denom
 
-    query_vec = np.array(response.data[0].embedding)
+    # load stored embeddings
+    with open(JSON_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-    embeddings_dict = default_embeddings(client)
+    max_similarity = -1.0
+    max_endpoint = None
+    max_id = None
+    best_api_endpoint = None
 
-    best_text = max(embeddings_dict, key=lambda t: cosine_similarity(query_vec, embeddings_dict[t]))
-    
-    return best_text
+    for endpoint, items in data.items():
+        #print("Checking endpoint:", endpoint)
+        for each in items:
+            api_ep = each.get("API Endpoint")
+            if match(entities_count, api_ep) == False:
+                continue
+            stored_emb = each.get("Embeddings")
+            if stored_emb is None:
+                continue
+            stored_vec = np.array(stored_emb, dtype = float)
+            sim = cosine_similarity(query_vec, stored_vec)
+            # debug print
+            #print(f" → {api_ep}: similarity = {sim}")
+            if sim > max_similarity:
+                max_similarity = sim
+                max_endpoint = endpoint
+                max_id = each.get("ID")
+                best_api_endpoint = api_ep
+
+    # you can print or return
+    #print("Best match:", max_endpoint, max_id, best_api_endpoint, "with sim:", max_similarity)
+    return max_endpoint, max_id, best_api_endpoint
+
+# example usage
+res = parse_context(client, "Provide the list of of all contract  manager")
+print("Result:", res)
