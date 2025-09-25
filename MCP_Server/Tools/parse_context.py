@@ -77,6 +77,9 @@ def map_numbers_to_placeholders(input_text: str, endpoint_template: str) -> dict
 
     return entities
 
+
+
+
 # After defining map_numbers_to_placeholders, add this helper
 def fill_endpoint(endpoint_template: str, placeholder_mapping: dict) -> str:
     """
@@ -149,6 +152,8 @@ def parse_context(input_text):
     return max_endpoint, max_id, best_api_endpoint
 
 inputs = [
+    "List all people",
+    "Get all alerts for project 5.",
     "Get attachment 10 for timesheet 5.",
     "Get the list of locations for project ID 2 in timesheet ID 1",
     "Show locations for task ID 9 in timesheet ID 3.",
@@ -169,6 +174,7 @@ inputs = [
     "Get benefits value 3 for person 4.",
     "Get accrual plan 2 for person 6.",
     "Get attachment 8 for person 3."
+    
 ]
 
 
