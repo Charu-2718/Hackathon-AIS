@@ -5,6 +5,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi import Request
 
+from Tools.parse_context import parse_context
+
 from LLM.create_response import create_response
 from LLM.connect_llm import connect_llm
 
@@ -37,11 +39,22 @@ async def websocket_chat(websocket: WebSocket):
         while True:
             # ADD A CONIDITON TO CHECK IF ITS GENERAL CHAT OR REQUIRES MCP
             data = await websocket.receive_text()
-            bot_response = create_response(client = client, 
-                                           deployment_name = deployment_name, 
-                                           message = data)
+            response = parse_context(data)
+            if response == None:
+                final_output = data
+                bot_response = create_response(client = client, 
+                                            deployment_name = deployment_name, 
+                                            message = final_output,
+                                            found = 0
+                )
+                await websocket.send_text(bot_response)
+            else:
+                final_output = str(response)
+                await websocket.send_text(final_output)
+            print(final_output)
+            
             # send back
-            await websocket.send_text(bot_response)
+            
     except WebSocketDisconnect:
         print("Client disconnected")
 

@@ -1,4 +1,4 @@
-def create_response(client, deployment_name, message):
+def create_response(client, deployment_name, message, found):
     text_output = [
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": message}

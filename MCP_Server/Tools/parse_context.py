@@ -17,6 +17,44 @@ client = OpenAI(
     base_url = AZURE_ENDPOINT
 )
 
+MCP_KEYWORDS = [
+    # high-level modules
+    "contracts", "contract", "expenses", "expense", "projects", "project",
+    "timesheets", "timesheet", "people", "person",
+
+    # contract-related
+    "clauses", "mod", "wage-determination", "billing", "provisions", "statuses",
+    "types", "organizations", "owning-organizations",
+
+    # expense-related
+    "attachments", "attachment", "details", "history", "meal-caps", "payment-methods",
+    "vat", "validate",
+
+    # project-related
+    "accounts", "billing-managers", "customers", "document", "leads", "approvers",
+    "resource", "viewers", "alerts", "budget", "cost-rates", "fixed-price", "invoice",
+    "items", "labor-categories", "notes", "comments", "audit", "pay-codes",
+    "people-assignments", "plan-sets", "tasks", "pre-billed", "prebilled", "pre_billed",
+    "pre_billed_labor", "prebilled_labor", "pre_billed", "prebilled", "predecessors",
+
+    # timesheet / time
+    "adjustments", "auto-fill", "offline", "validate", "time", "timesheet", "timesheets",
+
+    # people / person module
+    "accrual-plans", "accrualplans", "alternates", "approval-groups", "approver",
+    "submitter", "expense-report", "expense-request", "leave", "attachments",
+    "benefits-values", "benefitsvalues", "classification", "payroll", "rates", "skills",
+    "summaries", "people-list", "peoplelist"
+]
+
+_keyword_pattern = re.compile(
+    r"\b(" + "|".join(re.escape(kw) for kw in MCP_KEYWORDS) + r")\b",
+    flags = re.IGNORECASE
+)
+
+# print(_keyword_pattern.search("Hi who is Shashank Dimri"))
+# print(_keyword_pattern.search("Provide the list of of all contract manager"))
+
 def extract_int_entities(text: str) -> list[int]:
     """Extract all integer tokens from text (positive integers)."""
     #########################################
@@ -33,6 +71,8 @@ def match(entities, endpoint):
     return entities == count
 
 def parse_context(input_text):
+    if _keyword_pattern.search(input_text) == None:
+        return None
     entities_count = len(extract_int_entities(input_text))
     resp = client.embeddings.create(
         model = AZURE_DEPLOYMENT,
@@ -57,7 +97,6 @@ def parse_context(input_text):
     best_api_endpoint = None
 
     for endpoint, items in data.items():
-        #print("Checking endpoint:", endpoint)
         for each in items:
             api_ep = each.get("API Endpoint")
             if match(entities_count, api_ep) == False:
@@ -83,5 +122,8 @@ def parse_context(input_text):
 # res = parse_context("Provide the list of of all contract  manager")
 # print("Result:", res)
 
-res = parse_context("Get the list of locations for a specific project within a particular timesheet, using the timesheet ID 1 and project ID 2")
-print("Result:", res)
+# res = parse_context("Get the list of locations for a specific project within a particular timesheet, using the timesheet ID 1 and project ID 2")
+# print("Result:", res)
+
+# res = parse_context("How is the weather today?")
+# print("Result:", res)
