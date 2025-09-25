@@ -19,6 +19,9 @@ client = OpenAI(
 
 def extract_int_entities(text: str) -> list[int]:
     """Extract all integer tokens from text (positive integers)."""
+    #########################################
+    # Match the parameter and extracted entity (have to input parameters here as well and then extract the entity first)
+    #########################################
     matches = re.findall(r"\b\d+\b", text)
     return [int(m) for m in matches]
 
@@ -29,7 +32,7 @@ def match(entities, endpoint):
             count += 1
     return entities == count
 
-def parse_context(client, input_text):
+def parse_context(input_text):
     entities_count = len(extract_int_entities(input_text))
     resp = client.embeddings.create(
         model = AZURE_DEPLOYMENT,
@@ -77,5 +80,8 @@ def parse_context(client, input_text):
     return max_endpoint, max_id, best_api_endpoint
 
 # example usage
-res = parse_context(client, "Provide the list of of all contract  manager")
+# res = parse_context("Provide the list of of all contract  manager")
+# print("Result:", res)
+
+res = parse_context("Get the list of locations for a specific project within a particular timesheet, using the timesheet ID 1 and project ID 2")
 print("Result:", res)

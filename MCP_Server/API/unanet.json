@@ -4,6 +4,12 @@
     "title": "UnanetApiSample",
     "version": "1.0"
   },
+  "servers": [
+    {
+      "url": "https://demounanet.com",
+      "description": "Base URL for the Unanet API (Replace with your actual instance URL)"
+    }
+  ],
   "paths": {
     "/rest/contracts": {
       "get": {
